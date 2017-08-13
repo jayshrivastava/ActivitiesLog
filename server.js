@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
+    res.sendFile(path.join(__dirname, 'public/post.html'));
 });
 
 app.get('/Entries', function(request, response){
@@ -23,13 +23,27 @@ app.get('/Entries', function(request, response){
   response.send(rows);
 });
 });
-// FIX DB.RUN
+//making a new html file to display the posts
+// app.get('/testhtmlget', function(request, response){
+// });
+
 app.post('/postEntry', function(request, response) {
     db.run("INSERT INTO Entries (Title, Month, Year, Body) VALUES (?,?,?,?)", request.body.Title,request.body.Month, request.body.Year, request.body.Paragraph ,
     function (err, rows) {  console.log("Express POST recieved on port: " + port);
-    response.send(rows);
+
+    response.redirect('/Entries');
   });
 });
+
+// app.delete('/deleteEntry', function(request, response) {
+//     db.run("DELETE * FROM Entries WHERE id = ?", request.body.Num);
+//   //  ,
+//   //  function (err, rows) {  console.log("Post Deleted");
+//
+//     //response.redirect('/Entries');
+// //  });
+// });
+
 
 app.listen(port, function(){
   console.log("Express app listening on port " + port);
