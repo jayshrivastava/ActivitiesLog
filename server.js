@@ -35,14 +35,13 @@ app.post('/postEntry', function(request, response) {
   });
 });
 
-// app.delete('/deleteEntry', function(request, response) {
-//     db.run("DELETE * FROM Entries WHERE id = ?", request.body.Num);
-//   //  ,
-//   //  function (err, rows) {  console.log("Post Deleted");
-//
-//     //response.redirect('/Entries');
-// //  });
-// });
+app.post('/deleteEntry', function(request, response) {
+    db.run("DELETE FROM Entries WHERE id = ?",request.body.Num,
+   function (err, rows) {  console.log("Post Deleted");
+
+    response.redirect('/Entries');
+  });
+});
 
 
 app.listen(port, function(){
