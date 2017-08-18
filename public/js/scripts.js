@@ -1,33 +1,26 @@
-function createTable(tableData) {
-  var table = document.createElement('table');
-  var tableBody = document.createElement('tbody');
 
-  tableData.forEach(function(rowData) {
-    var row = document.createElement('tr');
-
-    rowData.forEach(function(cellData) {
-      var cell = document.createElement('td');
-      cell.appendChild(document.createTextNode(cellData));
-      row.appendChild(cell);
-    });
-
-    tableBody.appendChild(row);
-  });
-
-  table.appendChild(tableBody);
-  document.body.appendChild(table);
-}
-//FIX
 function getEntriesArray (){
   var url  = "http://localhost:3000/Entries";
-  var xhr  = new XMLHttpRequest();
-  xhr.open('GET', url, true);
+  var xhr  = new XMLHttpRequest()
+  xhr.open('GET', url, true)
   xhr.onload = function () {
-    var [] data = xhr.response.body;
+    var obj = JSON.parse(xhr.responseText);
     if (xhr.readyState == 4 && xhr.status == "200") {
-    console.table(data);
-    } else {
-      console.error(data);
+
+
+      var tbl=$("<table/>").attr("id","mytable");
+      $("#div1").append(tbl);
+      for(var i=0;i<obj.length;i++)
+      {
+        var tr="<tr>";
+        var td1="<td>"+obj[i]["id"]+"</td>";
+        var td2="<td>"+obj[i]["Title"]+"</td>";
+        var td3="<td>"+obj[i]["Month"]+"</td>";
+        var td4="<td>"+obj[i]["Year"]+"</td>";
+        var td5="<td>"+obj[i]["Body"]+"</td></tr>";
+        $("#mytable").append(tr+td1+td2+td3+td4+td5);
+
+      }
     }
   }
   xhr.send(null);

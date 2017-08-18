@@ -1,3 +1,7 @@
 @font-face {
   font-family: 'Lato', sans-serif;
 }
+
+#mytable,td{
+    border:1px solid blue;
+}
