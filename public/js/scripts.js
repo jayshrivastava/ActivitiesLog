@@ -1,12 +1,11 @@
 
 function getEntriesArray (){
-  var url  = "http://localhost:3000/Entries";
+  var url  = "/Entries";
   var xhr  = new XMLHttpRequest()
-  xhr.open('GET', url, true)
+  xhr.open('GET', url, true);
   xhr.onload = function () {
     var obj = JSON.parse(xhr.responseText);
     if (xhr.readyState == 4 && xhr.status == "200") {
-
 
       var tbl=$("<table/>").attr("id","mytable");
       $("#div1").append(tbl);
@@ -25,3 +24,17 @@ function getEntriesArray (){
   }
   xhr.send(null);
 }
+
+//buttons are null right now
+function getBlog(){
+  var url = "/blog";
+  var xhttp = new XMLHttpRequest;
+  xhttp.open ('GET', url, true);
+  xhttp.send (null);
+};
+function getPost(){
+  var url = "/post";
+  var xhttp = new XMLHttpRequest;
+  xhttp.open ('GET', url, true);
+  xhttp.send (null);
+};
