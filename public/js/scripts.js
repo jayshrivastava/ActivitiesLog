@@ -38,3 +38,4 @@ function getPost(){
   xhttp.open ('GET', url, true);
   xhttp.send (null);
 };
+// Jay
